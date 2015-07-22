@@ -45,5 +45,5 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 (( find /usr/share/doc -empty|xargs rmdir || true ))
 
 # Move conf to external volume
-mv /root/.uploadr.ini /folders2flickr/ && \
-ln -s /folders2flickr/.uploadr.ini /root && \
+RUN mv /root/.uploadr.ini /folders2flickr/ && \
+RUN ln -s /folders2flickr/.uploadr.ini /root && \
