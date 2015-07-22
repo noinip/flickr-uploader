@@ -19,7 +19,7 @@ usermod -g 100 nobody && \
 
 # Make f2f dir
 
-mkdir /folders2flickr
+mkdir /folders2flickr && \
 
 # Install python
 apt-get update && \
