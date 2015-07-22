@@ -9,17 +9,17 @@ CMD ["/sbin/my_init"]
 
 # Set volume
 VOLUME /photos
-VOLUME /folders2flickr
 
 # Set the locale
 RUN locale-gen en_US.UTF-8 && \
 
-# Add config to execute during container startup
-ADD cfg/config.sh /root/
-
 # Fix a Debianism of the nobody's uid being 65534
 usermod -u 99 nobody && \
 usermod -g 100 nobody && \
+
+# Make f2f dir
+
+mkdir /folders2flickr
 
 # Install python
 apt-get update && \
@@ -32,6 +32,9 @@ apt-get -y --force-yes install git && \
 pip install --user git+https://github.com/richq/folders2flickr.git && \
 cp /root/.local/share/folders2flickr/uploadr.ini.sample /root/.uploadr.ini && \
 
+# Move conf to external volume
+mv /root/.uploadr.ini /folders2flickr/ && \
+ln -s /folders2flickr/.uploadr.ini /root && \
 
 # Set start file
 mv /root/.local/bin/folders2flickr /etc/my_init.d/folders2flickr && \
