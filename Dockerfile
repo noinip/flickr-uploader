@@ -32,10 +32,6 @@ apt-get -y --force-yes install git && \
 pip install --user git+https://github.com/richq/folders2flickr.git && \
 cp /root/.local/share/folders2flickr/uploadr.ini.sample /root/.uploadr.ini && \
 
-# Move conf to external volume
-mv /root/.uploadr.ini /folders2flickr/ && \
-ln -s /folders2flickr/.uploadr.ini /root && \
-
 # Set start file
 mv /root/.local/bin/folders2flickr /etc/my_init.d/folders2flickr && \
 chmod +x /etc/my_init.d/folders2flickr && \
@@ -47,3 +43,7 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 /usr/share/lintian /usr/share/linda /var/cache/man && \
 (( find /usr/share/doc -depth -type f ! -name copyright|xargs rm || true )) && \
 (( find /usr/share/doc -empty|xargs rmdir || true ))
+
+# Move conf to external volume
+mv /root/.uploadr.ini /folders2flickr/ && \
+ln -s /folders2flickr/.uploadr.ini /root && \
