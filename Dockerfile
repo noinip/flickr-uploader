@@ -11,8 +11,12 @@ CMD ["/sbin/my_init"]
 VOLUME /photos 
 VOLUME /folders2flickr
 
+# Start script
+ADD config.sh /etc/my_init.d/config.sh
+RUN chmod +x /etc/my_init.d/config.sh && \
+
 # Set the locale
-RUN locale-gen en_US.UTF-8 && \
+locale-gen en_US.UTF-8 && \
 
 # Fix a Debianism of the nobody's uid being 65534
 usermod -u 99 nobody && \
@@ -29,11 +33,6 @@ apt-get -y --force-yes install git && \
 # Install folders2flickr
 pip install --user git+https://github.com/richq/folders2flickr.git && \
 cp /root/.local/share/folders2flickr/uploadr.ini.sample /root/.uploadr.ini && \
-
-# Start script
-
-ADD config.sh /etc/my_init.d/config.sh && \
-RUN chmod +x /etc/my_init.d/config.sh && \
 
 # Set start file
 mv /root/.local/bin/folders2flickr /etc/my_init.d/folders2flickr && \
