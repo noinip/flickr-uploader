@@ -8,7 +8,8 @@ ENV DEBIAN_FRONTEND=noninteractive HOME="/root" TERM=xterm LANG=en_US.UTF-8 LANG
 CMD ["/sbin/my_init"]
 
 # Set volume
-VOLUME /photos
+VOLUME /photos 
+VOLUME /folders2flickr
 
 # Set the locale
 RUN locale-gen en_US.UTF-8 && \
@@ -17,9 +18,6 @@ RUN locale-gen en_US.UTF-8 && \
 usermod -u 99 nobody && \
 usermod -g 100 nobody && \
 
-# Make f2f dir
-
-mkdir /folders2flickr && \
 
 # Install python
 apt-get update && \
@@ -32,6 +30,11 @@ apt-get -y --force-yes install git && \
 pip install --user git+https://github.com/richq/folders2flickr.git && \
 cp /root/.local/share/folders2flickr/uploadr.ini.sample /root/.uploadr.ini && \
 
+# Start script
+
+ADD config.sh /etc/my_init.d/config.sh && \
+RUN chmod +x /etc/my_init.d/config.sh && \
+
 # Set start file
 mv /root/.local/bin/folders2flickr /etc/my_init.d/folders2flickr && \
 chmod +x /etc/my_init.d/folders2flickr && \
@@ -43,7 +46,3 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 /usr/share/lintian /usr/share/linda /var/cache/man && \
 (( find /usr/share/doc -depth -type f ! -name copyright|xargs rm || true )) && \
 (( find /usr/share/doc -empty|xargs rmdir || true ))
-
-# Move conf to external volume
-RUN mv /root/.uploadr.ini /folders2flickr/
-RUN ln -s /folders2flickr/.uploadr.ini /root
