@@ -21,15 +21,15 @@ usermod -g 100 nobody && \
 # Install python
 
 apt-get update && \
-sudo apt-get -y --force-yes install python-pip python-dev build-essential && \
-sudo pip install --upgrade pip && \
-sudo pip install --upgrade virtualenv && \
-sudo apt-get -y --force-yes install git && \
+apt-get -y --force-yes install python-pip python-dev build-essential && \
+pip install --upgrade pip && \
+pip install --upgrade virtualenv && \
+apt-get -y --force-yes install git && \
 
 # Install folders2flickr
 
 pip install --user git+https://github.com/richq/folders2flickr.git && \
-cp ~/.local/share/folders2flickr/uploadr.ini.sample ~/.uploadr.ini && \
+cp /root/.local/share/folders2flickr/uploadr.ini.sample /root/.uploadr.ini && \
 
 #set start file
 mv /root/.local/bin/folders2flickr /etc/my_init.d/folders2flickr && \
