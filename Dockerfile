@@ -30,13 +30,10 @@ pip install --upgrade pip && \
 pip install --upgrade virtualenv && \
 apt-get -y --force-yes install git && \
 
-# Install folders2flickr
-pip install --user git+https://github.com/richq/folders2flickr.git && \
-cp /root/.local/share/folders2flickr/uploadr.ini.sample /root/.uploadr.ini && \
-
 # Set start file
-mv /root/.local/bin/folders2flickr /etc/my_init.d/folders2flickr && \
-chmod +x /etc/my_init.d/folders2flickr && \
+curl -o /etc/my_init.d/uploadr.py https://github.com/trickortweak/flickr-uploader/blob/master/uploadr.py && \
+curl -o /etc/my_init.d/uploadr.ini https://github.com/trickortweak/flickr-uploader/blob/master/uploadr.ini && \
+chmod +x /etc/my_init.d/uploadr.py && \
 
 # Clean up
 apt-get clean && \
