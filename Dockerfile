@@ -12,8 +12,8 @@ VOLUME /photos
 VOLUME /folders2flickr
 
 # Start script
-ADD config.sh /etc/my_init.d/config.sh
-RUN chmod +x /etc/my_init.d/config.sh && \
+RUN mkdir /etc/service/flickr
+ADD config.sh /etc/service/flickr/run
 
 # Set the locale
 locale-gen en_US.UTF-8 && \
@@ -31,8 +31,8 @@ pip install --upgrade virtualenv && \
 apt-get -y --force-yes install git && \
 
 # Set start file
-curl -o /etc/my_init.d/uploadr.py https://github.com/trickortweak/flickr-uploader/blob/master/uploadr.py && \
-curl -o /etc/my_init.d/uploadr.ini https://github.com/trickortweak/flickr-uploader/blob/master/uploadr.ini && \
+curl -o /etc/my_init.d/uploadr.py https://raw.githubusercontent.com/trickortweak/flickr-uploader/master/uploadr.py && \
+curl -o /etc/my_init.d/uploadr.ini https://raw.githubusercontent.com/trickortweak/flickr-uploader/master/uploadr.ini && \
 chmod +x /etc/my_init.d/uploadr.py && \
 
 # Clean up
