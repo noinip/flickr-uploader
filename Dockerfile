@@ -16,7 +16,7 @@ RUN mkdir /etc/service/flickr
 ADD config.sh /etc/service/flickr/run
 
 # Set the locale
-locale-gen en_US.UTF-8 && \
+RUN locale-gen en_US.UTF-8 && \
 
 # Fix a Debianism of the nobody's uid being 65534
 usermod -u 99 nobody && \
