@@ -33,9 +33,9 @@ pip install --upgrade virtualenv && \
 apt-get -y --force-yes install git && \
 
 # Set start file
-curl -o /etc/my_init.d/uploadr.py https://raw.githubusercontent.com/trickortweak/flickr-uploader/master/uploadr.py && \
-#curl -o /etc/my_init.d/uploadr.ini https://raw.githubusercontent.com/trickortweak/flickr-uploader/master/uploadr.ini && \
-ln -s /folders2flickr/uploadr.ini /etc/my_init.d/uploadr.ini && \
+curl -o /etc/my_init.d/uploadr.py https://raw.githubusercontent.com/snoopy86/flickr-uploader-1/master/uploadr.py && \
+#curl -o /etc/my_init.d/uploadr.ini https://raw.githubusercontent.com/snoopy86/flickr-uploader-1/master/uploadr.ini && \
+#ln -s /folders2flickr/uploadr.ini /etc/my_init.d/uploadr.ini && \
 chmod +x /etc/my_init.d/uploadr.py && \
 
 
