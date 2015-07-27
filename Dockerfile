@@ -16,7 +16,7 @@ VOLUME /folders2flickr
 #ADD config.sh /etc/service/flickr/run
 #ADD config.sh /etc/my_init.d/config.sh
 #RUN chmod +x /etc/my_init.d/config.sh
-RUN cp /folders2flickr/uploadr.ini /etc/my_init.d/uploadr.ini
+#RUN cp /folders2flickr/uploadr.ini /etc/my_init.d/uploadr.ini
 
 # Set the locale
 RUN locale-gen en_US.UTF-8 && \
