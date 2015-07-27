@@ -12,10 +12,10 @@ VOLUME /photos
 VOLUME /folders2flickr
 
 # Start script
-RUN mkdir /etc/service/flickr
-ADD config.sh /etc/service/flickr/run
-ADD config.sh /etc/my_init.d/config.sh
-RUN chmod +x /etc/my_init.d/config.sh
+#RUN mkdir /etc/service/flickr
+#ADD config.sh /etc/service/flickr/run
+#ADD config.sh /etc/my_init.d/config.sh
+#RUN chmod +x /etc/my_init.d/config.sh
 
 # Set the locale
 RUN locale-gen en_US.UTF-8 && \
